@@ -106,85 +106,85 @@ Geometric means (ns/op) calculated across all tested collection sizes, averaged 
 
 ## V2 vs JDK
 
-| Method                     | Custom V2 (ns)     | JDK Stack (ns) |     Margin     |          Winner          |             Note              |
-|:---------------------------|:-------------------|:---------------|:--------------:|:------------------------:|:-----------------------------:|
-| `Constructor()`            | 25.3               | 30.9           |     0.82x      | Statistically Equivalent |                               |
-| `add(E)`                   | 109,141.8          | 106,259.1      |     1.03x      | Statistically Equivalent |                               |
-| `add(int, E)`              | 42,850.4           | 2,074.9        |     20.65x     |           JDK            |                               |
-| `addAll(Collection)`       | 97,643.6           | 62,356.5       |     1.57x      |           JDK            |                               |
-| `addAll(int, Collection)`  | 52,825.3           | 3,831.9        |     13.79x     |           JDK            |                               |
-| `clear()`                  | 26.0               | 13,201.5       |     0.00x      |            V2            |  Custom Significantly Faster  |
-| `clone()`                  | $1.87 \times 10^9$ | 9,110.0        |  204,908.58x   |            V2            |   Critical Regression in V2   |
-| `contains(Object)`         | 47,173.4           | 17,024.4       |     2.77x      |           JDK            |                               |
-| `containsAll(Collection)`  | 204,392.7          | 53,761.1       |     3.80x      |           JDK            |                               |
-| `empty()`                  | 29.1               | 30.5           |     0.96x      | Statistically Equivalent |                               |
-| `equals(Object)`           | $1.83 \times 10^9$ | 70,108.6       |   26,047.57x   |            V2            |   Critical Regression in V2   |
-| `get(int)`                 | 42,345.9           | 42.7           |    991.36x     |           JDK            |                               |
-| `hashCode()`               | $1.81 \times 10^9$ | 48,068.1       |   37,682.21x   |            V2            |   Critical Regression in V2   |
-| `indexOf(Object)`          | 78,954.7           | 50,992.5       |     1.55x      |           JDK            |                               |
-| `indexOf(Object, int)`     | 79,114.4           | 51,312.6       |     1.54x      |           JDK            |                               |
-| `isEmpty()`                | 24.3               | 30.7           |     0.79x      |            V2            |                               |
-| `iterator()`               | $1.82 \times 10^9$ | 25,969.5       |   70,029.33x   |            V2            |   Critical Regression in V2   |
-| `lastIndexOf(Object, int)` | 42,192.9           | 47,926.1       |     0.88x      | Statistically Equivalent |                               |
-| `listIterator()`           | $1.81 \times 10^9$ | 27,443.8       |   65,866.66x   |            V2            |   Critical Regression in V2   |
-| `listIterator(int)`        | $4.48 \times 10^8$ | 16,492.5       |   27,181.23x   |            V2            |   Critical Regression in V2   |
-| `peek()`                   | 23.8               | 35.4           |     0.67x      |            V2            |                               |
-| `pop()`                    | 24.5               | 35.1           |     0.70x      |            V2            |                               |
-| `push(E)`                  | 109,684.0          | 106,703.3      |     1.03x      | Statistically Equivalent |                               |
-| `remove(int)`              | 44,181.9           | 2,346.6        |     18.83x     |           JDK            |                               |
-| `remove(Object)`           | 54,709.8           | 59,924.3       |     0.91x      | Statistically Equivalent |                               |
-| `removeAll(Collection)`    | 254,225.0          | 257,245.3      |     0.99x      | Statistically Equivalent |                               |
-| `retainAll(Collection)`    | 252,837.6          | 248,304.3      |     1.02x      | Statistically Equivalent |                               |
-| `search(Object)`           | 45,054.1           | 10,196.0       |     4.42x      |           JDK            |                               |
-| `set(int, E)`              | 44,858.6           | 48.8           |    918.36x     |           JDK            |                               |
-| `size()`                   | 27.8               | 32.5           |     0.86x      | Statistically Equivalent |                               |
-| `sort(Comparator)`         | $1.82 \times 10^9$ | 58,291.6       |   31,241.57x   |            V2            | **Critical Regression in V2** |
-| `spliterator()`            | $1.80 \times 10^9$ | 34.3           | 52,420,732.00x |            V2            | **Critical Regression in V2** |
-| `subList(int, int)`        | 26.5               | 60.9           |     0.44x      |            V2            |                               |
-| `toArray()`                | $1.81 \times 10^9$ | 5,845.0        |  310,181.99x   |            V2            | **Critical Regression in V2** |
-| `toArray(T[])`             | $1.80 \times 10^9$ | 24,687.9       |   72,920.01x   |            V2            | **Critical Regression in V2** |
-| `toString()`               | $1.80 \times 10^9$ | 851,541.5      |   2,114.67x    |            V2            | **Critical Regression in V2** |
+| Method                     | Custom V2 (ns)     | JDK Stack (ns) |     Margin     |          Winner          |            Note             |
+|:---------------------------|:-------------------|:---------------|:--------------:|:------------------------:|:---------------------------:|
+| `Constructor()`            | 25.3               | 30.9           |     0.82x      | Statistically Equivalent |                             |
+| `add(E)`                   | 109,141.8          | 106,259.1      |     1.03x      | Statistically Equivalent |                             |
+| `add(int, E)`              | 42,850.4           | 2,074.9        |     20.65x     |           JDK            |                             |
+| `addAll(Collection)`       | 97,643.6           | 62,356.5       |     1.57x      |           JDK            |                             |
+| `addAll(int, Collection)`  | 52,825.3           | 3,831.9        |     13.79x     |           JDK            |                             |
+| `clear()`                  | 26.0               | 13,201.5       |     0.00x      |            V2            | Custom Significantly Faster |
+| `clone()`                  | $1.87 \times 10^9$ | 9,110.0        |  204,908.58x   |            V2            |  Critical Regression in V2  |
+| `contains(Object)`         | 47,173.4           | 17,024.4       |     2.77x      |           JDK            |                             |
+| `containsAll(Collection)`  | 204,392.7          | 53,761.1       |     3.80x      |           JDK            |                             |
+| `empty()`                  | 29.1               | 30.5           |     0.96x      | Statistically Equivalent |                             |
+| `equals(Object)`           | $1.83 \times 10^9$ | 70,108.6       |   26,047.57x   |           JDK            |  Critical Regression in V2  |
+| `get(int)`                 | 42,345.9           | 42.7           |    991.36x     |           JDK            |                             |
+| `hashCode()`               | $1.81 \times 10^9$ | 48,068.1       |   37,682.21x   |           JDK            |  Critical Regression in V2  |
+| `indexOf(Object)`          | 78,954.7           | 50,992.5       |     1.55x      |           JDK            |                             |
+| `indexOf(Object, int)`     | 79,114.4           | 51,312.6       |     1.54x      |           JDK            |                             |
+| `isEmpty()`                | 24.3               | 30.7           |     0.79x      |            V2            |                             |
+| `iterator()`               | $1.82 \times 10^9$ | 25,969.5       |   70,029.33x   |           JDK            |  Critical Regression in V2  |
+| `lastIndexOf(Object, int)` | 42,192.9           | 47,926.1       |     0.88x      | Statistically Equivalent |                             |
+| `listIterator()`           | $1.81 \times 10^9$ | 27,443.8       |   65,866.66x   |           JDK            |  Critical Regression in V2  |
+| `listIterator(int)`        | $4.48 \times 10^8$ | 16,492.5       |   27,181.23x   |           JDK            |  Critical Regression in V2  |
+| `peek()`                   | 23.8               | 35.4           |     0.67x      |            V2            |                             |
+| `pop()`                    | 24.5               | 35.1           |     0.70x      |            V2            |                             |
+| `push(E)`                  | 109,684.0          | 106,703.3      |     1.03x      | Statistically Equivalent |                             |
+| `remove(int)`              | 44,181.9           | 2,346.6        |     18.83x     |           JDK            |                             |
+| `remove(Object)`           | 54,709.8           | 59,924.3       |     0.91x      | Statistically Equivalent |                             |
+| `removeAll(Collection)`    | 254,225.0          | 257,245.3      |     0.99x      | Statistically Equivalent |                             |
+| `retainAll(Collection)`    | 252,837.6          | 248,304.3      |     1.02x      | Statistically Equivalent |                             |
+| `search(Object)`           | 45,054.1           | 10,196.0       |     4.42x      |           JDK            |                             |
+| `set(int, E)`              | 44,858.6           | 48.8           |    918.36x     |           JDK            |                             |
+| `size()`                   | 27.8               | 32.5           |     0.86x      | Statistically Equivalent |                             |
+| `sort(Comparator)`         | $1.82 \times 10^9$ | 58,291.6       |   31,241.57x   |           JDK            |  Critical Regression in V2  |
+| `spliterator()`            | $1.80 \times 10^9$ | 34.3           | 52,420,732.00x |           JDK            |  Critical Regression in V2  |
+| `subList(int, int)`        | 26.5               | 60.9           |     0.44x      |            V2            |                             |
+| `toArray()`                | $1.81 \times 10^9$ | 5,845.0        |  310,181.99x   |           JDK            |  Critical Regression in V2  |
+| `toArray(T[])`             | $1.80 \times 10^9$ | 24,687.9       |   72,920.01x   |           JDK            |  Critical Regression in V2  |
+| `toString()`               | $1.80 \times 10^9$ | 851,541.5      |   2,114.67x    |           JDK            |  Critical Regression in V2  |
 
 ## V1 vs V2
 
-| Method                     | V1 (ns)   | V2 (ns)            |     Margin     |          Winner          |            Note            |
-|:---------------------------|:----------|:-------------------|:--------------:|:------------------------:|:--------------------------:|
-| `Constructor()`            | 26.4      | 25.3               |     0.96x      | Statistically Equivalent |                            |
-| `add(E)`                   | 104,179.2 | 109,141.8          |     1.05x      | Statistically Equivalent |                            |
-| `add(int, E)`              | 2,079.2   | 42,850.4           |     20.61x     |            V1            |                            |
-| `addAll(Collection)`       | 61,796.2  | 97,643.6           |     1.58x      |            V1            |                            |
-| `addAll(int, Collection)`  | 3,741.0   | 52,825.3           |     14.12x     |            V1            |                            |
-| `clear()`                  | 12,089.5  | 26.0               |     0.00x      |            V2            |  V2 Significantly Faster   |
-| `clone()`                  | 8,618.8   | $1.87 \times 10^9$ |  216,587.11x   |            V1            | Critical Regression in V2  |
-| `contains(Object)`         | 16,110.1  | 47,173.4           |     2.93x      |            V1            |                            |
-| `containsAll(Collection)`  | 52,469.9  | 204,392.7          |     3.90x      |            V1            |                            |
-| `empty()`                  | 26.3      | 29.1               |     1.11x      | Statistically Equivalent |                            |
-| `equals(Object)`           | 69,105.9  | $1.83 \times 10^9$ |   26,425.52x   |        Custom V1         | Critical Regression in V2  |
-| `get(int)`                 | 31.8      | 42,345.9           |   1,330.95x    |        Custom V1         | Critical Regression in V2  |
-| `hashCode()`               | 47,316.1  | $1.81 \times 10^9$ |   38,281.08x   |        Custom V1         | Critical Regression in V2  |
-| `indexOf(Object)`          | 50,364.1  | 78,954.7           |     1.57x      |        Custom V1         |                            |
-| `indexOf(Object, int)`     | 50,635.5  | 79,114.4           |     1.56x      |        Custom V1         |                            |
-| `isEmpty()`                | 26.3      | 24.3               |     0.92x      | Statistically Equivalent |                            |
-| `iterator()`               | 24,869.6  | $1.82 \times 10^9$ |   73,126.48x   |        Custom V1         | Critical Regression in V2  |
-| `lastIndexOf(Object, int)` | 47,218.7  | 42,192.9           |     0.89x      | Statistically Equivalent |                            |
-| `listIterator()`           | 26,183.6  | $1.81 \times 10^9$ |   69,036.63x   |        Custom V1         | Critical Regression in V2  |
-| `listIterator(int)`        | 16,133.1  | $4.48 \times 10^8$ |   27,786.68x   |        Custom V1         | Critical Regression in V2  |
-| `peek()`                   | 26.7      | 23.8               |     0.89x      | Statistically Equivalent |                            |
-| `pop()`                    | 26.8      | 24.5               |     0.91x      | Statistically Equivalent |                            |
-| `push(E)`                  | 105,257.4 | 109,684.0          |     1.04x      | Statistically Equivalent |                            |
-| `remove(int)`              | 2,106.8   | 44,181.9           |     20.97x     |        Custom V1         |  V1 Significantly faster   |
-| `remove(Object)`           | 58,541.1  | 54,709.8           |     0.93x      | Statistically Equivalent |                            |
-| `removeAll(Collection)`    | 254,554.2 | 254,225.0          |     1.00x      | Statistically Equivalent |                            |
-| `retainAll(Collection)`    | 243,912.9 | 252,837.6          |     1.04x      | Statistically Equivalent |                            |
-| `search(Object)`           | 9,935.7   | 45,054.1           |     4.53x      |        Custom V1         |                            |
-| `set(int, E)`              | 34.2      | 44,858.6           |   1,313.08x    |        Custom V1         | Critical Regression in V2* |
-| `size()`                   | 26.5      | 27.8               |     1.05x      | Statistically Equivalent |                            |
-| `sort(Comparator)`         | 56,875.5  | $1.82 \times 10^9$ |   32,019.43x   |        Custom V1         | Critical Regression in V2* |
-| `spliterator()`            | 27.1      | $1.80 \times 10^9$ | 66,491,198.94x |        Custom V1         | Critical Regression in V2* |
-| `subList(int, int)`        | 27.5      | 26.5               |     0.97x      | Statistically Equivalent |                            |
-| `toArray()`                | 5,911.7   | $1.81 \times 10^9$ |  306,682.10x   |        Custom V1         | Critical Regression in V2  |
-| `toArray(T[])`             | 24,512.8  | $1.80 \times 10^9$ |   73,440.75x   |        Custom V1         | Critical Regression in V2  |
-| `toString()`               | 866,374.5 | $1.80 \times 10^9$ |   2,078.47x    |        Custom V1         | Critical Regression in V2  |
+| Method                     | V1 (ns)   | V2 (ns)            |     Margin     |          Winner          |           Note            |
+|:---------------------------|:----------|:-------------------|:--------------:|:------------------------:|:-------------------------:|
+| `Constructor()`            | 26.4      | 25.3               |     0.96x      | Statistically Equivalent |                           |
+| `add(E)`                   | 104,179.2 | 109,141.8          |     1.05x      | Statistically Equivalent |                           |
+| `add(int, E)`              | 2,079.2   | 42,850.4           |     20.61x     |            V1            |                           |
+| `addAll(Collection)`       | 61,796.2  | 97,643.6           |     1.58x      |            V1            |                           |
+| `addAll(int, Collection)`  | 3,741.0   | 52,825.3           |     14.12x     |            V1            |                           |
+| `clear()`                  | 12,089.5  | 26.0               |    464.95x     |            V2            |  V2 Significantly Faster  |
+| `clone()`                  | 8,618.8   | $1.87 \times 10^9$ |  216,587.11x   |            V1            | Critical Regression in V2 |
+| `contains(Object)`         | 16,110.1  | 47,173.4           |     2.93x      |            V1            |                           |
+| `containsAll(Collection)`  | 52,469.9  | 204,392.7          |     3.90x      |            V1            |                           |
+| `empty()`                  | 26.3      | 29.1               |     1.11x      | Statistically Equivalent |                           |
+| `equals(Object)`           | 69,105.9  | $1.83 \times 10^9$ |   26,425.52x   |            V1            | Critical Regression in V2 |
+| `get(int)`                 | 31.8      | 42,345.9           |   1,330.95x    |            V1            | Critical Regression in V2 |
+| `hashCode()`               | 47,316.1  | $1.81 \times 10^9$ |   38,281.08x   |            V1            | Critical Regression in V2 |
+| `indexOf(Object)`          | 50,364.1  | 78,954.7           |     1.57x      |            V1            |                           |
+| `indexOf(Object, int)`     | 50,635.5  | 79,114.4           |     1.56x      |            V1            |                           |
+| `isEmpty()`                | 26.3      | 24.3               |     0.92x      | Statistically Equivalent |                           |
+| `iterator()`               | 24,869.6  | $1.82 \times 10^9$ |   73,126.48x   |            V1            | Critical Regression in V2 |
+| `lastIndexOf(Object, int)` | 47,218.7  | 42,192.9           |     0.89x      | Statistically Equivalent |                           |
+| `listIterator()`           | 26,183.6  | $1.81 \times 10^9$ |   69,036.63x   |            V1            | Critical Regression in V2 |
+| `listIterator(int)`        | 16,133.1  | $4.48 \times 10^8$ |   27,786.68x   |            V1            | Critical Regression in V2 |
+| `peek()`                   | 26.7      | 23.8               |     0.89x      | Statistically Equivalent |                           |
+| `pop()`                    | 26.8      | 24.5               |     0.91x      | Statistically Equivalent |                           |
+| `push(E)`                  | 105,257.4 | 109,684.0          |     1.04x      | Statistically Equivalent |                           |
+| `remove(int)`              | 2,106.8   | 44,181.9           |     20.97x     |            V1            |  V1 Significantly faster  |
+| `remove(Object)`           | 58,541.1  | 54,709.8           |     0.93x      | Statistically Equivalent |                           |
+| `removeAll(Collection)`    | 254,554.2 | 254,225.0          |     1.00x      | Statistically Equivalent |                           |
+| `retainAll(Collection)`    | 243,912.9 | 252,837.6          |     1.04x      | Statistically Equivalent |                           |
+| `search(Object)`           | 9,935.7   | 45,054.1           |     4.53x      |            V1            |                           |
+| `set(int, E)`              | 34.2      | 44,858.6           |   1,313.08x    |            V1            | Critical Regression in V2 |
+| `size()`                   | 26.5      | 27.8               |     1.05x      | Statistically Equivalent |                           |
+| `sort(Comparator)`         | 56,875.5  | $1.82 \times 10^9$ |   32,019.43x   |            V1            | Critical Regression in V2 |
+| `spliterator()`            | 27.1      | $1.80 \times 10^9$ | 66,491,198.94x |            V1            | Critical Regression in V2 |
+| `subList(int, int)`        | 27.5      | 26.5               |     0.97x      | Statistically Equivalent |                           |
+| `toArray()`                | 5,911.7   | $1.81 \times 10^9$ |  306,682.10x   |            V1            | Critical Regression in V2 |
+| `toArray(T[])`             | 24,512.8  | $1.80 \times 10^9$ |   73,440.75x   |            V1            | Critical Regression in V2 |
+| `toString()`               | 866,374.5 | $1.80 \times 10^9$ |   2,078.47x    |            V1            | Critical Regression in V2 |
 
 # Performance Charts
 
