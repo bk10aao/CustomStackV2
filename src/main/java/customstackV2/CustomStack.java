@@ -103,6 +103,7 @@ public class CustomStack<E> implements Cloneable, Serializable {
      * @param c the collection whose elements are to be placed into this stack
      */
     public CustomStack(final Collection<? extends E> c) {
+        this();
         addAll(c);
     }
 
@@ -116,9 +117,9 @@ public class CustomStack<E> implements Cloneable, Serializable {
      * @throws IllegalArgumentException if {@code initialCapacity} is negative
      */
     public CustomStack(final int initialCapacity) {
+        this();
         if (initialCapacity < 0)
             throw new IllegalArgumentException();
-        head = null;
     }
 
     /**
@@ -562,14 +563,13 @@ public class CustomStack<E> implements Cloneable, Serializable {
      */
     public E remove(final int index) {
         checkIndex(index, size);
-        if (index == size - 1) {
-            E value = head.value;
-            head = head.previous;
-            size--;
-            modCount++;
-            return value;
-        }
-        return removeInnerIndex(index);
+        if(index < size - 1)
+            return removeInnerIndex(index);
+        E value = head.value;
+        head = head.previous;
+        size--;
+        modCount++;
+        return value;
     }
 
     /**
@@ -774,7 +774,7 @@ public class CustomStack<E> implements Cloneable, Serializable {
             private int index = 0;
 
             @Override
-            public boolean tryAdvance(Consumer<? super E> action) {
+            public boolean tryAdvance(final Consumer<? super E> action) {
                 requireNonNull(action);
                 if (index < snapshot.length) {
                     E item = (E) snapshot[index++];
@@ -909,7 +909,7 @@ public class CustomStack<E> implements Cloneable, Serializable {
      *                 iteration order
      * @return {@code true}
      */
-    private boolean insertCollection(int index, Collection<? extends E> c, Object[] elements) {
+    private boolean insertCollection(final int index, Collection<? extends E> c, final Object[] elements) {
         Node<E> current = head;
         int currentIndex = size;
         while (currentIndex > index + 1) {
@@ -934,7 +934,7 @@ public class CustomStack<E> implements Cloneable, Serializable {
      *
      * @param item the element to insert at the bottom of the stack
      */
-    private void pushToStart(E item) {
+    private void pushToStart(final E item) {
         Node<E> newNode = new Node<>(item);
         if (head == null)
             head = newNode;
@@ -956,7 +956,7 @@ public class CustomStack<E> implements Cloneable, Serializable {
      * @param index the index of the node to remove
      * @return the value that was held by the removed node
      */
-    private E removeInnerIndex(int index) {
+    private E removeInnerIndex(final int index) {
         Node<E> previous = head;
         for (int i = size - 1; i > index + 1; i--)
             previous = previous.previous;
@@ -994,7 +994,7 @@ public class CustomStack<E> implements Cloneable, Serializable {
          *
          * @param value the element value to store in this node
          */
-        public Node(E value) {
+        public Node(final E value) {
             this.value = value;
         }
     }
